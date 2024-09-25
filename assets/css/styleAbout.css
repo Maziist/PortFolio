@@ -1,0 +1,266 @@
+@font-face {
+    font-family: JustMe;
+    src: url(../font/XTypewriter-Regular.ttf);
+}
+
+@font-face {
+    font-family: RozhaOne-Regular;
+    src: url(../font/RozhaOne-Regular.ttf);
+}
+
+
+body {
+    margin: 0;
+    font-family: justMe;
+    background: url("../img/aboutme.png"), linear-gradient(#392657, #392657c3);
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.direction {
+    font-family: justMe;
+    position: absolute;
+    top: 40%;
+    right: 10%;
+    margin-left: 5px;
+}
+
+li {
+    list-style: none;
+}
+
+.direction a {
+    background-color: #0905095e;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 30px;
+    text-decoration: none;
+    list-style: none;
+}
+
+.direction a:hover {
+    background-color: #7D3B7D;
+}
+
+.arrow {
+    position: absolute;
+    top: -0.5em;
+    left: 135%;
+    transform: translate(50%, 50%);
+    transform: rotate(-90deg);
+    cursor: pointer;
+}
+
+.arrow span {
+    display: block;
+    width: 1.5vw;
+    height: 1.5vw;
+    border-bottom: 5px solid white;
+    border-right: 5px solid white;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate 2s infinite;
+}
+
+.arrow span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+.arrow span:nth-child(3) {
+    animation-delay: -0.4s;
+}
+
+#container {
+    position: relative;
+    width: 100%;
+    height: 850px;
+}
+
+
+#run {
+    position: relative;
+    bottom: 2em;
+    width: 4em; 
+    height: auto;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    letter-spacing: 5px;
+    font-size: 50px;
+    color: white;
+    text-shadow: 1px 1px 2px rgb(12, 12, 12);
+}
+
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.imageContainer {
+    
+    position: relative;
+    right: 3em;
+    width: 100%;
+    max-width: 600px;
+}
+
+.imageContainer img {
+    
+    width: 110%;
+    height: 65vh;
+}
+
+
+#textContainer {
+    font-family: RozhaOne-Regular;
+    font-size: 15px;
+    margin: 10px 50px;
+    letter-spacing: 6px;
+    position: absolute;
+    top: 58%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 90%;
+    overflow-y: auto;
+    padding: 10px;
+    border-radius: 10px;
+    line-height: 1.4;
+    color: white;
+    text-shadow: 1px 1px 2px rgb(21, 12, 35);
+}
+
+.sound-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 5%;
+}
+
+.sound-toggle-checkbox {
+    display: none;
+}
+
+.sound-toggle-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #999999;
+    border-radius: 20px;
+}
+
+.sound-toggle-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.sound-toggle-inner:before,
+.sound-toggle-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    font-size: 14px;
+    color: white;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.sound-toggle-inner:before {
+    content: "Off";
+    padding-left: 10px;
+    background-color: #3D2B5B;
+    color: #FFFFFF;
+}
+
+.sound-toggle-inner:after {
+    content: "ON";
+    padding-right: 10px;
+    background-color: #665681;
+    color: #ffffff;
+    text-align: right;
+}
+
+.sound-toggle-switch {
+    display: block;
+    width: 18px;
+    margin: 6px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 56px;
+    border: 2px solid #999999;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.sound-toggle-checkbox:checked+.sound-toggle-label .sound-toggle-inner {
+    margin-left: 0;
+}
+
+.sound-toggle-checkbox:checked+.sound-toggle-label .sound-toggle-switch {
+    right: 0px;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-20px, -20px);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(20px, 20px);
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    h1 {
+      font-size: 30px;
+    }
+    .sound-toggle {
+      right: 10em;
+      width: 7vw;
+    }
+    #character {
+      bottom: auto;
+      transform: translateY(-10em);
+    }
+    #run {
+      
+      width: 3em;
+      height: auto;
+    }
+    .direction {
+      display: none;
+    }
+    .imageContainer {
+   
+      transform: translateY(1em);
+    }
+    #textContainer {
+      font-size: 13px;
+    }
+  }

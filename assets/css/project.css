@@ -1,0 +1,796 @@
+@font-face {
+    font-family: JustMe;
+    src: url(../font/XTypewriter-Regular.ttf);
+}
+
+@font-face {
+    font-family: LettersforLearners;
+    src: url(../font/Letters\ for\ Learners.ttf);
+}
+
+@font-face {
+    font-family: Meditative;
+    src: url(../font/Meditative.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    font-family: justMe;
+    color: #333;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/mp.png');
+    background: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(2.5px);
+    z-index: -1;
+}
+
+/* Contenu principal */
+main {
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Toggle son */
+.sound-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 5vw;
+}
+
+.sound-toggle-checkbox {
+    display: none;
+}
+
+.sound-toggle-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #9654D4;
+    border-radius: 20px;
+}
+
+.sound-toggle-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.sound-toggle-inner:before,
+.sound-toggle-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    font-size: 14px;
+    color: white;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.sound-toggle-inner:before {
+    content: "Off";
+    padding-left: 10px;
+    background-color: #a6b1ef67;
+    color: #FFFFFF;
+}
+
+.sound-toggle-inner:after {
+    content: "ON";
+    padding-right: 10px;
+    background-color: #b5b6ee4d;
+    color: #9654D4;
+    text-align: right;
+}
+
+.sound-toggle-switch {
+    display: block;
+    width: 18px;
+    margin: 6px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 56px;
+    border: 2px solid #999999;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.sound-toggle-checkbox:checked+.sound-toggle-label .sound-toggle-inner {
+    margin-left: 0;
+}
+
+.sound-toggle-checkbox:checked+.sound-toggle-label .sound-toggle-switch {
+    right: 0px;
+}
+
+/* Conteneur des nuages */
+#cloudContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+}
+
+/* Aigle */
+#eagle {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    width: 50px;
+    height: auto;
+}
+
+/* Liste de navigation */
+.direction {
+    font-family: justMe;
+    position: absolute;
+    top: 50em;
+    right: 10em;
+    margin-left: 1em;
+    z-index: 2;
+}
+
+li {
+    list-style: none;
+}
+
+.direction a {
+    background-color: #1f838d4f;
+    color: rgb(150, 78, 78);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    text-decoration: none;
+    list-style: none;
+   
+
+}
+
+.direction a:hover {
+    background-color: #7D3B7D;
+}
+
+.arrow {
+    position: absolute;
+    top: -1em;
+    left: 10em;
+    transform: translate(50%, 50%);
+    transform: rotate(-90deg);
+    cursor: pointer;
+}
+
+.arrow span {
+    display: block;
+    width: 1.5vw;
+    height: 1.5vw;
+    border-bottom: 5px solid white;
+    border-right: 5px solid white;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate 2s infinite;
+}
+
+.arrow span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+.arrow span:nth-child(3) {
+    animation-delay: -0.4s;
+}
+
+.direction a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 1px 1px black;
+}
+
+/* Conteneur du jeu */
+#gameContainer {
+    background: url("../img/map.png") no-repeat center center;
+    background-size: 100% 100%;
+    margin: auto;
+    width: 85vw;
+    height: 80vh;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.101);
+}
+
+#container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#chama,
+#character {
+    position: absolute;
+    z-index: 3;
+}
+
+#run {
+    width: 2.5em;
+}
+
+#flameContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 25rem;
+    position: absolute;
+    z-index: 3;
+}
+
+#flameContainer img {
+    width: 25px;
+}
+
+.flame {
+    position: relative;
+    left: 13em;
+}
+
+.flame1 {
+    position: relative;
+    left: 30.4em;
+}
+
+.flame2 {
+    position: relative;
+    left: 46em;
+}
+
+.flame3 {
+    position: relative;
+    left: 54.9em;
+}
+
+.flame4 {
+    position: relative;
+    left: 70.5em;
+}
+
+.flame5 {
+    position: relative;
+    left: 86.3em;
+}
+
+#chama {
+    bottom: 51%;
+    right: 43%;
+}
+
+/* Conteneur des projets */
+#projectsContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.project1,
+.project2,
+.project3,
+.project4 {
+    position: relative;
+    bottom: 31em;
+    width: 170px;
+    text-align: center;
+    margin-bottom: 1rem;
+    z-index: -1;
+}
+
+.project1,
+.project2,
+.project3 {
+    margin-left: 4rem;
+}
+
+.project1 {
+    left: 7.5em;
+}
+
+.project4 {
+    right: 4em;
+}
+
+.project1 img,
+.project2 img,
+.project3 img,
+.project4 img {
+    width: 100%;
+    height: auto;
+}
+
+/* Modales */
+#projectsContainer p {
+    position: relative;
+    text-align: center;
+    border: 2px solid #83a4497b;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.482);
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #c3ae68c3;
+    font-family: Meditative;
+    letter-spacing: 2px;
+
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefec5;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 20px;
+
+}
+
+
+.modal-content h2 {
+    font-size: 40px;
+    text-align: center;
+    padding: 10px;
+}
+
+.modal-content img {
+    margin-left: 15%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 70%;
+    border: 1px solid #D5C78E;
+    border-radius: 25PX;
+
+}
+
+.modal-content p {
+    font-size: 20px;
+    text-align: center;
+    padding: 15px;
+}
+
+.modal-content a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+    text-shadow: 1px 0.5px black;
+    background-color: #D5C78E;
+    box-shadow: 1px 1px #AF7D42;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+span {
+    color: red;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-20px, -20px);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(20px, 20px);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 1700px) {
+    #gameContainer {
+        width: 86vw;
+        height: 80vh;
+    }
+
+    .direction {
+        top: 47em;
+        right: 9em;
+    }
+.flame{
+    left: 11.3em;
+}
+    .flame1 {
+        left: 26.4em;
+    }
+    .flame2 {
+        left: 40em;
+    }
+    .flame3 {
+        left: 47.5em;
+    }
+    .flame4 {
+        left: 61.2em;
+    }
+    .flame5 {
+        left: 74.8em;
+    }
+
+    .project1, .project2, .project3, .project4 {
+        bottom: 31em;
+        width: 165px;
+    }
+
+    .project1 {
+        left: 7em;
+    }
+
+    .project4 {
+        right: 4em;
+    }
+
+    #chama {
+        bottom: 51%;
+        right: 43%;
+    }
+
+    .sound-toggle {
+        width: 3vw;
+    }
+
+    #eagle {
+        width: 50px;
+    }
+
+    .modal-content {
+        width: 70%;
+        max-width: 600px;
+    }
+
+    .modal-content h2 {
+        font-size: 36px;
+    }
+
+    .modal-content p {
+        font-size: 18px;
+    }
+
+    .modal-content a {
+        font-size: 18px;
+    }
+}
+@media (max-width: 1600px) {
+    #gameContainer {
+        width: 88vw;
+        height: 78vh;
+    }
+
+    .direction {
+        top: 46em;
+        right: 8em;
+    }
+
+
+    .flame1 {
+        bottom: 3em;
+        left: 15.5em;
+    }
+
+    .flame2 {
+
+        right: 9.5em;
+    }
+
+    .flame3 {
+        bottom: 3em;
+        left: -1em;
+    }
+
+    .flame4 {
+        right: 26em;
+    }
+
+    .flame5 {
+        bottom: 3em;
+        right: 11.8em;
+    }
+
+    .project1,
+    .project2,
+    .project3,
+    .project4 {
+        bottom: 29em;
+        width: 145px;
+    }
+
+    .project1 p,
+    .project2 p,
+    .project3 p,
+    .project4 p {
+        font-size: 15px;
+        width: 120px;
+        left: 1em;
+    }
+
+    .project1 {
+        left: 6.5em;
+    }
+
+    .project2 {
+        right: 1em;
+    }
+
+    .project4 {
+        right: 3.5em;
+    }
+
+    #chama {
+        bottom: 50%;
+        right: 42%;
+    }
+
+    .sound-toggle {
+        width: 6vw;
+    }
+
+    #eagle {
+        width: 48px;
+    }
+
+    .modal-content {
+        width: 75%;
+        max-width: 580px;
+    }
+
+    .modal-content h2 {
+        font-size: 30px;
+    }
+
+    .modal-content p {
+        font-size: 18px;
+    }
+
+    .modal-content a {
+        font-size: 19px;
+    }
+}
+
+@media (max-width: 1300px) {
+    #gameContainer {
+        width: 90vw;
+        height: 75vh;
+    }
+    #run{
+        width: 2.5em;
+    }
+    .direction {
+        top: 44em;
+        right: 7em;
+    }
+
+    #flameContainer img {
+        width: 18px;
+        bottom: 1.2em;
+    }
+
+    .flame {
+        left: 9.2em;
+    }
+
+    .flame1 {
+        left: 21.7em;
+    }
+
+    .flame2 {
+        left: 32.9em;
+    }
+
+    .flame3 {
+        left: 39.2em;
+    }
+
+    .flame4 {
+        left: 50.4em;
+    }
+
+    .flame5 {
+        left: 61.6em;
+    }
+
+    .project1,
+    .project2,
+    .project3,
+    .project4 {
+        bottom: 28em;
+        width: 130px;
+    }
+
+    .project1 {
+        left: 5em;
+    }
+
+    .project3 {
+        right: 0.5em;
+    }
+
+    .project4 {
+        right: 3em;
+    }
+
+    #chama {
+        bottom: 49%;
+        right: 41%;
+    }
+
+    .sound-toggle {
+        width: 7vw;
+    }
+
+    #eagle {
+        width: 35px;
+    }
+
+    .modal-content {
+        width: 80%;
+        max-width: 550px;
+    }
+}
+
+@media (max-width: 1024px) {
+    #gameContainer {
+        width: 95vw;
+        height: 70vh;
+    }
+#run{
+    width: 2em;
+}
+    .direction {
+        top: 40em;
+        right: 5em;
+    }
+
+    #flameContainer {
+        top: -1.5em;
+    }
+
+    #flameContainer img {
+        width: 16px;
+    }
+
+    .flame {
+        left: 7.6em;
+    }
+
+    .flame1 {
+        left: 17.9em;
+    }
+
+    .flame2 {
+        left: 27.1em;
+    }
+
+    .flame3 {
+        left: 32.3em;
+    }
+
+    .flame4 {
+        left: 41.5em;
+    }
+
+    .flame5 {
+        left: 50.8em;
+    }
+
+    .project1,
+    .project2,
+    .project3,
+    .project4 {
+        bottom: 26em;
+        width: 120px;
+    }
+
+    .project1 p,
+    .project2 p,
+    .project3 p {
+        left: -0.5em;
+    }
+    .project4 p{
+        left: -0.2em;
+    }
+    .project1 {
+        left: 4em;
+    }
+
+    .project2 {
+        right: 1.5em;
+    }
+
+    .project3 {
+        right: 1.4em;
+    }
+
+    .project4 {
+        right: 3em;
+    }
+
+}
+
+@media (max-width: 768px) {
+    #gameContainer {
+        width: 100vw;
+        height: 60vh;
+    }
+
+    .direction {
+        top: 35em;
+        right: 2em;
+    }
+
+    #flameContainer {
+        gap: 20em;
+    }
+
+    .project1,
+    .project2,
+    .project3,
+    .project4 {
+        bottom: 20em;
+        width: 130px;
+    }
+
+    .project1 {
+        left: 2em;
+    }
+
+    .project4 {
+        right: 1em;
+    }
+
+    .sound-toggle {
+        width: 5vw;
+    }
+}

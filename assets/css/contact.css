@@ -1,0 +1,258 @@
+@font-face {
+    font-family: JustMe;
+    src: url(../font/XTypewriter-Regular.ttf);
+}
+@font-face {
+    font-family: LettersforLearners;
+    src: url(../font/Letters\ for\ Learners.ttf);
+}
+body{
+    margin: 0;
+    font-family: justMe;
+    background:url("../img/contact.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.direction {
+    font-family: justMe;
+    position: absolute;
+    bottom: 20%;
+    right: 10%;
+    margin-left: 5px; 
+}
+li{
+    list-style: none;
+}
+.direction a {
+    background-color: #0905095e; 
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 30px;
+    text-decoration: none;
+    list-style: none;
+}
+
+.direction a:hover {
+    background-color: #7D3B7D;
+}
+.arrow {
+    position: absolute;
+    bottom: -1em;
+    left: 140%;
+    transform: translate(50%, 50%);
+    transform: rotate(-90deg);
+    cursor: pointer;
+}
+
+.arrow span {
+    display: block;
+    width: 1.5vw;
+    height: 1.5vw;
+    border-bottom: 5px solid white;
+    border-right: 5px solid white;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate 2s infinite;
+}
+
+.arrow span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+.arrow span:nth-child(3) {
+    animation-delay: -0.4s;
+}
+
+#container {
+    position: relative;
+    width: 100%;
+    height: 760px;
+}
+
+
+#run {
+    position: relative;
+    bottom: 1.5em;
+    width: 3em; 
+    height: auto;
+    z-index: 1;
+}
+h1{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: white;
+    font-size: 80px;
+    text-shadow: 1px 1px black;
+}
+
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+#reseau {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    padding: 5%;
+    box-sizing: border-box;
+}
+
+#reseau a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#reseau img {
+    width: 10vw; 
+    height: 10vh;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+#reseau p {
+    font-size: 18px;
+    text-shadow: 0.5px 0.5px;
+    margin: 0;
+    word-break: break-word;
+}
+.bunny {
+    position: absolute;
+    bottom: 3em;
+    z-index: 1;
+    width: 2em;
+}
+.sound-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 5%;
+  }
+  
+  .sound-toggle-checkbox {
+    display: none;
+  }
+  
+  .sound-toggle-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #999999;
+    border-radius: 20px;
+  }
+  
+  .sound-toggle-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+  }
+  
+  .sound-toggle-inner:before,
+  .sound-toggle-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    font-size: 14px;
+    color: white;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+  }
+  
+  .sound-toggle-inner:before {
+    content: "Off";
+    padding-left: 10px;
+    background-color: #F2C0BF;
+    color: #FFFFFF;
+  }
+  
+  .sound-toggle-inner:after {
+    content: "ON";
+    padding-right: 10px;
+    background-color: #F8E1B8;
+    color: #FEBD91;
+    text-align: right;
+  }
+  
+  .sound-toggle-switch {
+    display: block;
+    width: 18px;
+    margin: 6px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 56px;
+    border: 2px solid #999999;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+  }
+  
+  .sound-toggle-checkbox:checked + .sound-toggle-label .sound-toggle-inner {
+    margin-left: 0;
+  }
+  
+  .sound-toggle-checkbox:checked + .sound-toggle-label .sound-toggle-switch {
+    right: 0px;
+  }
+
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-20px, -20px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(20px, 20px);
+    }
+}
+@media screen and (max-width: 1280px) {
+   body{
+    background-size:170vh;
+   }
+
+    .sound-toggle {
+        right: 10em;
+        width: 7vw;
+    }
+    #character{
+        bottom: auto;
+        transform: translateY(-11.5em);
+    }
+    #run{
+        width: 3em;
+    }
+    #bunny{
+        top: 31.5em;
+        width: 1.5em;
+        z-index: 1;
+    }
+.direction{
+    display: none;
+}
+    
+}
